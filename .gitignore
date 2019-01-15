@@ -1,0 +1,22 @@
+### Maven
+target/
+**/target/
+
+### Java
+*.class
+
+### Package Files
+*.jar
+*.war
+*.ear
+
+### InteliJ
+.idea/
+*.iml
+
+### Setting
+*.classpath
+*.project
+.settings/org.eclipse.core.resources.prefs
+*.prefs
+.DS_Store
