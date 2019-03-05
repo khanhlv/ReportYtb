@@ -14,14 +14,14 @@ public class ChromeDriverImpl implements IWebDriver {
     public WebDriver execute() {
         System.setProperty("webdriver.chrome.driver", WebDriverConst.CHROME_PATH);
         System.out.println("webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
-
+        String filePath = "D:\\test_driver\\chrome\\";
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.setCapability("takesScreenshot", true);
         chromeOptions.addArguments("disable-infobars");
 
         try {
-            File fileCookie = new File("D://chrome//");
+            File fileCookie = new File(filePath);
             if (!fileCookie.exists()) {
                 fileCookie.mkdirs();
             }
@@ -31,7 +31,8 @@ public class ChromeDriverImpl implements IWebDriver {
 
         } catch (Exception e) {
         }
-        chromeOptions.addArguments(String.format("--user-data-dir=%s", "D://chrome//"));
+
+        chromeOptions.addArguments(String.format("--user-data-dir=%s", filePath));
 
 //        String proxyURL = String.format("%s:%s", setting.proxy.host(), setting.proxy.port());
 //        org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
@@ -41,8 +42,6 @@ public class ChromeDriverImpl implements IWebDriver {
 //        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
         ChromeDriver webDriver = new ChromeDriver(chromeOptions);
-
-        webDriver.manage().window().maximize();
 
         return webDriver;
     }

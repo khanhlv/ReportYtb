@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
 
 public class CookiesManager {
 
@@ -24,6 +25,24 @@ public class CookiesManager {
         cookieValue.put(SID, "JAewmdJLt3wAcywsTINI5syXtMrcyiyxyoM80Xt7lhp3wBfzAaGlpcwt-6M85HvM41deNA.");
 
         COOKIES.put("dpntpj44@gmail.com", cookieValue);
+    }
+
+    public static void addCookie(WebDriver driver) {
+        driver.manage().deleteAllCookies();
+
+        CookiesManager.COOKIES.forEach((k, v) -> {
+            v.forEach((k1, v1) -> {
+                driver.manage().addCookie(
+                        new Cookie
+                                .Builder(k1.toString(), v1.toString())
+                                .domain(".youtube.com")
+                                .path("/")
+                                .expiresOn(DateUtils.addYears(new Date(), 3))
+                                .isHttpOnly(true)
+                                .isSecure(true)
+                                .build());
+            });
+        });
     }
 
     public static void main(String[] args) {

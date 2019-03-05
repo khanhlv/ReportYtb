@@ -42,7 +42,7 @@ public class LoginAction {
 
         driver.get("https://www.youtube.com/watch?v=T4QD6wMR9jY");
 
-        WebDriverUtils.takesScreenshot(driver, "D:\\image.png");
+        WebDriverUtils.takesScreenshot(driver, "D:\\test_driver\\data\\image.png");
 
 //        System.out.println(driver.getPageSource());
 

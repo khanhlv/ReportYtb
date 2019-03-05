@@ -1,15 +1,13 @@
 package com.report.ytb.action;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.CharSequenceUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,21 +21,7 @@ public class YoutubeAction {
         IWebDriver iWebDriver = new PhantomJSDriverImpl();
         WebDriver driver = iWebDriver.execute();
 
-        driver.manage().deleteAllCookies();
-
-        CookiesManager.COOKIES.forEach((k, v) -> {
-            v.forEach((k1, v1) -> {
-                driver.manage().addCookie(
-                        new Cookie
-                                .Builder(k1.toString(), v1.toString())
-                                .domain(".youtube.com")
-                                .path("/")
-                                .expiresOn(DateUtils.addYears(new Date(), 3))
-                                .isHttpOnly(true)
-                                .isSecure(true)
-                                .build());
-            });
-        });
+        CookiesManager.addCookie(driver);
 
         driver.get("https://www.youtube.com/watch?v=T4QD6wMR9jY&t=122");
 
@@ -91,9 +75,9 @@ public class YoutubeAction {
 //        JavascriptExecutor executor = (JavascriptExecutor) driver;
 //        executor.executeScript("document.querySelector('#watch8-action-buttons').querySelector('.yt-uix-menu').querySelector('.yt-uix-clickcard').querySelector('button').click()");
 
-        WebDriverUtils.takesScreenshot(driver, "D:\\image.png");
+        WebDriverUtils.takesScreenshot(driver, "D:\\test_driver\\data\\image.png");
 
-        FileUtils.writeStringToFile(new File("D:\\data.html"), driver.getPageSource());
+        FileUtils.writeStringToFile(new File("D:\\test_driver\\data\\data.html"), driver.getPageSource());
         driver.close();
 
         driver.quit();
