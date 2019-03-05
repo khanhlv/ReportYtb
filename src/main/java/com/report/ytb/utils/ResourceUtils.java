@@ -2,10 +2,16 @@ package com.report.ytb.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.report.ytb.model.UserInfo;
 
 public final class ResourceUtils {
 
@@ -21,7 +27,20 @@ public final class ResourceUtils {
         }
     }
 
+    public static List<UserInfo> readUser(String file) {
+        InputStream inputStream = ResourceUtils.class.getResourceAsStream(file);
+        try {
+            Type listType = new TypeToken<List<UserInfo>>(){}.getType();
+            return new Gson().fromJson(IOUtils.toString(inputStream, "UTF-8"), listType);
+        } catch (IOException ex) {
+            logger.error("ResourceUtils:readUser:UserInfo", ex);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        System.out.println(ResourceUtils.read("/scenario_1.js"));
+        ResourceUtils.readUser("/cookies.json").forEach((v) -> {
+            System.out.println(v.getUSERNAME());
+        });
     }
 }
