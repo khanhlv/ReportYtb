@@ -1,7 +1,5 @@
 package com.report.ytb.action;
 
-import java.math.BigDecimal;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,6 +11,7 @@ public class LoginAction {
     public void login() throws Exception {
         IWebDriver iWebDriver = new ChromeDriverImpl();
         WebDriver driver = iWebDriver.execute();
+        driver.manage().deleteAllCookies();
 
         driver.get("https://accounts.google.com/signin/v2/identifier?service=youtube&hl=en&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Fapp%3Ddesktop%26hl%3Den%26action_handle_signin%3Dtrue%26next%3D%252F&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
 

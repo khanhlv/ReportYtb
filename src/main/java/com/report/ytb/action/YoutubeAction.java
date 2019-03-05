@@ -38,43 +38,6 @@ public class YoutubeAction {
                                 .build());
             });
         });
-//
-//        driver.manage().addCookie(
-//                new Cookie
-//                        .Builder("HSID", "A01OC-Urpm4MBJHia")
-//                        .domain(".youtube.com")
-//                        .path("/")
-//                        .expiresOn(DateUtils.addYears(new Date(), 3))
-//                        .isHttpOnly(true)
-//                        .isSecure(true)
-//                        .build());
-//        driver.manage().addCookie(
-//                new Cookie
-//                        .Builder("SSID", "AoP7GoZHm07oAIWZo")
-//                        .domain(".youtube.com")
-//                        .path("/")
-//                        .expiresOn(DateUtils.addYears(new Date(), 3))
-//                        .isHttpOnly(true)
-//                        .isSecure(true)
-//                        .build());
-//        driver.manage().addCookie(
-//                new Cookie
-//                        .Builder("LOGIN_INFO", "AFmmF2swRgIhAIWuXIUKgTDyUqyZFshrjC_vQu9Arq5nb3IRMmMNCCIBAiEAhD5agzGXnKUgLqrWXYLh1OpBO8Y44bxY6TeQWgZejso:QUQ3MjNmeVctNUNZUThxZ2NKS2JSZGF3Zy1SeDN5bTU5alY1WkJsT3I0YWNDZUFJa1Q5NG5GbXB3bHZmem44RFBUY0xDMTh4bnZFbUM0Z25TV200cDlQT0JiRk9HZ2oyYVRZeGlVUFRoZXlpbVhIcHQ4ZUdNY3FKUVJqSjNBN3pxU0RaUUFzaHhCYTNpLXI3NjZxWWM1ZnVfc1BsNkdyaTVUc1R5amlFaTUtVFlYSXFTOFJTekFv")
-//                        .domain(".youtube.com")
-//                        .path("/")
-//                        .expiresOn(DateUtils.addYears(new Date(), 3))
-//                        .isHttpOnly(true)
-//                        .isSecure(true)
-//                        .build());
-//        driver.manage().addCookie(
-//                new Cookie
-//                        .Builder("SID", "IAeZwMmO_Fow_Ip5k30XQimfKzNwZvgdW6c0p0pm78QZdDMx1lOYQtoGy80fcGWBVSklqA.")
-//                        .domain(".youtube.com")
-//                        .path("/")
-//                        .expiresOn(DateUtils.addYears(new Date(), 3))
-//                        .isHttpOnly(true)
-//                        .isSecure(true)
-//                        .build());
 
         driver.get("https://www.youtube.com/watch?v=T4QD6wMR9jY&t=122");
 
