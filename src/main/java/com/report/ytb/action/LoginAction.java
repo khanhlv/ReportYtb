@@ -7,24 +7,24 @@ import org.openqa.selenium.WebDriver;
 
 import com.report.ytb.utils.WebDriverUtils;
 import com.report.ytb.webdriver.IWebDriver;
-import com.report.ytb.webdriver.impl.FirefoxDriverImpl;
+import com.report.ytb.webdriver.impl.ChromeDriverImpl;
 
 public class LoginAction {
     public void login() throws Exception {
-        IWebDriver iWebDriver = new FirefoxDriverImpl();
+        IWebDriver iWebDriver = new ChromeDriverImpl();
         WebDriver driver = iWebDriver.execute();
 
         driver.get("https://accounts.google.com/signin/v2/identifier?service=youtube&hl=en&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Fapp%3Ddesktop%26hl%3Den%26action_handle_signin%3Dtrue%26next%3D%252F&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
 
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[@id=\"identifierId\"]")).sendKeys("ttruyen.com@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"identifierId\"]")).sendKeys("triston.maxwell@gmail.com");
 
         driver.findElement(By.xpath("//*[@id=\"identifierNext\"]")).click();
 
 //        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
         Thread.sleep(2000);
-        driver.findElement(By.name("password")).sendKeys("KhanhLV@123");
+        driver.findElement(By.name("password")).sendKeys("Haha12345");
 
         driver.findElement(By.xpath("//*[@id=\"passwordNext\"]")).click();
 
@@ -41,19 +41,18 @@ public class LoginAction {
 //        JavascriptExecutor executor = (JavascriptExecutor) driver;
 //        executor.executeScript("alert('aaaa');");
 
-        driver.get("http://google.com.vn");
+        driver.get("https://www.youtube.com/watch?v=T4QD6wMR9jY");
 
         WebDriverUtils.takesScreenshot(driver, "D:\\image.png");
 
 //        System.out.println(driver.getPageSource());
 
-        driver.close();
-
-        driver.quit();
+//        driver.close();
+//
+//        driver.quit();
     }
 
     public static void main(String[] args) throws Exception {
         new LoginAction().login();
-        BigDecimal a = new BigDecimal(1);
     }
 }
