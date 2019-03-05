@@ -1,5 +1,6 @@
 package com.report.ytb.action;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
@@ -10,21 +11,35 @@ import com.report.ytb.webdriver.IWebDriver;
 import com.report.ytb.webdriver.impl.ChromeDriverImpl;
 
 public class YoutubeChromeAction {
-    public void start() throws Exception {
+    public void start() {
         IWebDriver iWebDriver = new ChromeDriverImpl();
         WebDriver driver = iWebDriver.execute();
 
-        CookiesManager.addCookie(driver);
+        String ytbId = "T4QD6wMR9jY";
 
-        driver.get("https://www.youtube.com/watch?v=T4QD6wMR9jY");
+        ResourceUtils.readUser("/cookies.json").forEach((v) -> {
+            if (StringUtils.isNoneEmpty(v.getLOGIN_INFO())) {
+                System.out.println(v.getUSERNAME());
 
-        Thread.sleep(30000);
+                CookiesManager.addCookie(driver, v);
 
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript(ResourceUtils.read("/scenario_chrome_1.js"));
+                driver.get("https://www.youtube.com/watch?v=" + ytbId);
 
-        Thread.sleep(40000);
-        WebDriverUtils.takesScreenshot(driver, "D:\\test_driver\\data\\image.png");
+                try {
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                }
+
+                JavascriptExecutor executor = (JavascriptExecutor) driver;
+                executor.executeScript(ResourceUtils.read("/scenario_chrome_1.js"));
+
+                try {
+                    Thread.sleep(40000);
+                } catch (InterruptedException e) {
+                }
+                WebDriverUtils.takesScreenshot(driver, "D:\\test_driver\\data\\" + v.getUSERNAME() + "_" + ytbId + ".png");
+            }
+        });
 
         driver.close();
 

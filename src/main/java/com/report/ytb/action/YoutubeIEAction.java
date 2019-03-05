@@ -12,7 +12,7 @@ public class YoutubeIEAction {
         IWebDriver iWebDriver = new InternetExplorerDriverImpl();
         WebDriver driver = iWebDriver.execute();
 
-        CookiesManager.addCookie(driver);
+        CookiesManager.addCookie(driver, null);
 
         driver.get("https://www.youtube.com/watch?v=T4QD6wMR9jY");
 
