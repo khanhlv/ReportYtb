@@ -30,7 +30,7 @@
         <appender-ref ref="CONSOLE" />
     </logger>
 
-    <logger name="com.zaxxer.hikari" level="ERROR" >
+    <logger name="org.openqa.selenium" level="DEBUG" >
         <appender-ref ref="ERROR_LOG" />
     </logger>
 

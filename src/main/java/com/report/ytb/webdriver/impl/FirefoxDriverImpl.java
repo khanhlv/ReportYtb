@@ -16,7 +16,7 @@ public class FirefoxDriverImpl implements IWebDriver {
     public WebDriver execute() {
         System.setProperty("webdriver.gecko.driver", WebDriverConst.FIREFOX_PATH);
         System.out.println("webdriver.gecko.driver: " + System.getProperty("webdriver.gecko.driver"));
-        String filePath = "data\\profile\\firefox\\";
+        String filePath = "data\\profiles\\firefox\\";
 //        if (setting.proxy != null && setting.proxy.isWorks()) {
 //            String proxyURL = String.format("%s:%s", setting.proxy.host(), setting.proxy.port());
 //            org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();

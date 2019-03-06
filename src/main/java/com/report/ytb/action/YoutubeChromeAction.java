@@ -3,9 +3,6 @@ package com.report.ytb.action;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
-import org.openqa.selenium.logging.LogType;
 
 import com.report.ytb.core.CookiesManager;
 import com.report.ytb.utils.ResourceUtils;
@@ -24,6 +21,8 @@ public class YoutubeChromeAction {
             if (StringUtils.isNoneEmpty(v.getLOGIN_INFO())) {
                 System.out.println(v.getUSERNAME());
 
+                driver.get("https://www.youtube.com/");
+
                 CookiesManager.addCookie(driver, v);
 
                 driver.get("https://www.youtube.com/watch?v=" + ytbId);
@@ -31,11 +30,6 @@ public class YoutubeChromeAction {
                 try {
                     Thread.sleep(30000);
                 } catch (InterruptedException e) {
-                }
-
-                LogEntries les = driver.manage().logs().get(LogType.PERFORMANCE);
-                for (LogEntry le : les) {
-                    System.out.println(le.getMessage());
                 }
 
                 JavascriptExecutor executor = (JavascriptExecutor) driver;
