@@ -1,5 +1,8 @@
 package com.report.ytb.action;
 
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,42 +18,53 @@ public class YoutubeChromeAction {
         IWebDriver iWebDriver = new ChromeDriverImpl();
         WebDriver driver = iWebDriver.execute();
 
-        String ytbId = "T4QD6wMR9jY";
+        driver.get("https://www.google.com/");
 
-        ResourceUtils.readUser("/cookies.json").forEach((v) -> {
-            if (StringUtils.isNoneEmpty(v.getLOGIN_INFO())) {
-                System.out.println(v.getUSERNAME());
+        try {
+            ResourceUtils.readLinkInternal("data/link.json").forEach((link) -> {
+                System.out.println("GET: " + link.getLINK());
 
-                driver.get("https://www.youtube.com/");
-
-                CookiesManager.addCookie(driver, v);
-
-                driver.get("https://www.youtube.com/watch?v=" + ytbId);
-
+                String path = link.getLINK().substring(link.getLINK().lastIndexOf("?v=") + 3);
                 try {
-                    Thread.sleep(30000);
-                } catch (InterruptedException e) {
+                    FileUtils.forceMkdir(new File("data\\output\\" + path));
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-                JavascriptExecutor executor = (JavascriptExecutor) driver;
-                executor.executeScript(ResourceUtils.read("/scenario_chrome_1.js"));
+                ResourceUtils.readUserInternal("data/cookies.json").forEach((v) -> {
+                    if (StringUtils.isNoneEmpty(v.getLOGIN_INFO())) {
+                        System.out.println(v.getUSERNAME());
 
-                try {
-                    Thread.sleep(40000);
-                } catch (InterruptedException e) {
-                }
-                WebDriverUtils.takesScreenshot(driver, "data\\output\\" + v.getUSERNAME() + "_" + ytbId + ".png");
-                System.out.println("TakesScreenshot: Done");
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                }
-            }
-        });
+                        CookiesManager.addCookie(driver, v);
 
-        driver.close();
+                        driver.get(link.getLINK());
 
-        driver.quit();
+                        try {
+                            Thread.sleep(30000);
+                        } catch (InterruptedException e) {
+                        }
+
+                        JavascriptExecutor executor = (JavascriptExecutor) driver;
+                        executor.executeScript(ResourceUtils.read("/scenario_chrome_1.js"));
+
+                        try {
+                            Thread.sleep(40000);
+                        } catch (InterruptedException e) {
+                        }
+                        WebDriverUtils.takesScreenshot(driver, "data\\output\\" + path  + "\\" + v.getUSERNAME() + ".png");
+
+                        System.out.println("TakesScreenshot: Done");
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                });
+            });
+        } finally {
+            driver.close();
+            driver.quit();
+        }
     }
 
     public static void main(String[] args) throws Exception {

@@ -9,6 +9,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import com.report.ytb.core.WebDriverConst;
 import com.report.ytb.webdriver.IWebDriver;
 
+/**
+ * Note: http://www.assertselenium.com/java/list-of-chrome-driver-command-line-arguments/
+ */
 public class ChromeDriverImpl implements IWebDriver {
     @Override
     public WebDriver execute() {
@@ -19,8 +22,14 @@ public class ChromeDriverImpl implements IWebDriver {
         String filePath = "data\\profiles\\chrome\\";
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
+//        chromeOptions.addArguments("--disable-extensions");
+        chromeOptions.addArguments("--disable-default-apps");
+        chromeOptions.addArguments("--disable-translate");
+        chromeOptions.addArguments("--disable-web-security");
+
 //        chromeOptions.addArguments("--headless", "--remote-debugging-port=9222");
-        chromeOptions.addArguments("--disable-web-security", "--disable-translate", "--disable-extensions", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors", "--no-sandbox");
+        chromeOptions.addArguments("--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors", "--no-sandbox");
+        chromeOptions.addArguments("load-extension=D:\\ReportYtb\\driver\\extensions\\3.41.0_0");
 
         chromeOptions.addArguments("disable-infobars");
 //        chromeOptions.addArguments("--user-agent=" + UserAgent.getUserAgent());

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.report.ytb.model.LinkInfo;
 import com.report.ytb.model.UserInfo;
 
 public final class ResourceUtils {
@@ -57,6 +58,16 @@ public final class ResourceUtils {
             logger.error("ResourceUtils:read:String", ex);
             return null;
         }
+    }
+
+    public static List<LinkInfo> readLinkInternal(String file) {
+        try {
+            Type listType = new TypeToken<List<LinkInfo>>(){}.getType();
+            return new Gson().fromJson(FileUtils.readFileToString(new File(file), "UTF-8"), listType);
+        } catch (IOException ex) {
+            logger.error("ResourceUtils:readLinkInternal:LinkInfo", ex);
+        }
+        return null;
     }
 
     public static void main(String[] args) {
