@@ -75,9 +75,9 @@ public class YoutubeAction {
 //        JavascriptExecutor executor = (JavascriptExecutor) driver;
 //        executor.executeScript("document.querySelector('#watch8-action-buttons').querySelector('.yt-uix-menu').querySelector('.yt-uix-clickcard').querySelector('button').click()");
 
-        WebDriverUtils.takesScreenshot(driver, "D:\\test_driver\\data\\image.png");
+        WebDriverUtils.takesScreenshot(driver, "data\\output\\image.png");
 
-        FileUtils.writeStringToFile(new File("D:\\test_driver\\data\\data.html"), driver.getPageSource());
+        FileUtils.writeStringToFile(new File("data\\output\\data.html"), driver.getPageSource());
         driver.close();
 
         driver.quit();

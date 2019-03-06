@@ -26,7 +26,7 @@ public class YoutubeFirefoxAction {
         executor.executeScript(ResourceUtils.read("/scenario_1.js"));
 
         Thread.sleep(40000);
-        WebDriverUtils.takesScreenshot(driver, "D:\\test_driver\\data\\image.png");
+        WebDriverUtils.takesScreenshot(driver, "data\\output\\image.png");
 
         driver.close();
 

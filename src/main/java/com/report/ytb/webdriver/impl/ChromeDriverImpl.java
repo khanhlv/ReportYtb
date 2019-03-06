@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import com.report.ytb.core.UserAgent;
 import com.report.ytb.core.WebDriverConst;
 import com.report.ytb.webdriver.IWebDriver;
 
@@ -14,11 +15,12 @@ public class ChromeDriverImpl implements IWebDriver {
     public WebDriver execute() {
         System.setProperty("webdriver.chrome.driver", WebDriverConst.CHROME_PATH);
         System.out.println("webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
-        String filePath = "D:\\test_driver\\chrome\\";
+        String filePath = "data\\profile\\chrome\\";
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
-        chromeOptions.setCapability("takesScreenshot", true);
         chromeOptions.addArguments("disable-infobars");
+        chromeOptions.addArguments("--user-agent=" + UserAgent.getUserAgent());
+        chromeOptions.setCapability("takesScreenshot", true);
 
         try {
             File fileCookie = new File(filePath);

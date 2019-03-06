@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+import com.report.ytb.core.UserAgent;
 import com.report.ytb.core.WebDriverConst;
 import com.report.ytb.webdriver.IWebDriver;
 
@@ -15,7 +16,7 @@ public class FirefoxDriverImpl implements IWebDriver {
     public WebDriver execute() {
         System.setProperty("webdriver.gecko.driver", WebDriverConst.FIREFOX_PATH);
         System.out.println("webdriver.gecko.driver: " + System.getProperty("webdriver.gecko.driver"));
-        String filePath = "D:\\test_driver\\firefox\\";
+        String filePath = "data\\profile\\firefox\\";
 //        if (setting.proxy != null && setting.proxy.isWorks()) {
 //            String proxyURL = String.format("%s:%s", setting.proxy.host(), setting.proxy.port());
 //            org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
@@ -25,7 +26,10 @@ public class FirefoxDriverImpl implements IWebDriver {
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
-        firefoxOptions.setCapability(FirefoxDriver.PROFILE, new FirefoxProfile(new File(filePath)));
+        FirefoxProfile firefoxProfile = new FirefoxProfile(new File(filePath));
+        firefoxProfile.setPreference("general.useragent.override", UserAgent.getUserAgent());
+
+        firefoxOptions.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
         firefoxOptions.setCapability("marionette", true);
         firefoxOptions.setCapability("takesScreenshot", true);
         firefoxOptions.setCapability("acceptInsecureCerts", true);
