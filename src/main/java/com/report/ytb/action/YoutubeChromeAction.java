@@ -45,10 +45,10 @@ public class YoutubeChromeAction {
                         }
 
                         JavascriptExecutor executor = (JavascriptExecutor) driver;
-                        executor.executeScript(ResourceUtils.read("/scenario_chrome_1.js"));
+                        executor.executeScript(ResourceUtils.read("/scenario_chrome_2.js"));
 
                         try {
-                            Thread.sleep(40000);
+                            Thread.sleep(30000);
                         } catch (InterruptedException e) {
                         }
                         WebDriverUtils.takesScreenshot(driver, "data\\output\\" + path  + "\\" + v.getUSERNAME() + ".png");
