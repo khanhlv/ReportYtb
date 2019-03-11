@@ -122,10 +122,17 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>1.7.25</version>
         </dependency>
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.1stleg</groupId>
+            <artifactId>jnativehook</artifactId>
+            <version>2.1.0</version>
         </dependency>
 
     </dependencies>
@@ -139,6 +146,11 @@
             <id>maven2</id>
             <name>maven2</name>
             <url>http://central.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>sonatype</id>
+            <name>maven2</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
     </repositories>
     <build>

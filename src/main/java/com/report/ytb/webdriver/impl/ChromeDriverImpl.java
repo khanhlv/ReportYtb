@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import com.report.ytb.core.UserAgent;
 import com.report.ytb.core.WebDriverConst;
 import com.report.ytb.webdriver.IWebDriver;
 
@@ -33,7 +32,7 @@ public class ChromeDriverImpl implements IWebDriver {
         chromeOptions.addArguments("load-extension=D:\\ReportYtb\\driver\\extensions\\3.41.0_0");
 
         chromeOptions.addArguments("disable-infobars");
-        chromeOptions.addArguments("--user-agent=" + UserAgent.getUserAgent());
+//        chromeOptions.addArguments("--user-agent=" + UserAgent.getUserAgent());
         chromeOptions.setCapability("takesScreenshot", true);
 
         try {

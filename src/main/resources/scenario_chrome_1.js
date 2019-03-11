@@ -23,7 +23,7 @@ setTimeout(function() {
                             //document.querySelector('input#input-8').setAttribute("value", "0")
                             //document.querySelector('input#input-9').setAttribute("value", "30")
 
-                            document.querySelector('iron-autogrow-textarea').value = "Báo cáo sai vi phạm"
+                            document.querySelector('iron-autogrow-textarea').value = "Vi phạm cộng đồng"
                             console.log(7)
                             setTimeout(function() {
                                 document.querySelector('#submit-button.style-scope.ytd-report-details-form-renderer').querySelector('ytd-button-renderer').click()

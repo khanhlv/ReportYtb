@@ -45,7 +45,7 @@ public class YoutubeChromeAction {
                         }
 
                         JavascriptExecutor executor = (JavascriptExecutor) driver;
-                        executor.executeScript(ResourceUtils.read("/scenario_chrome_2.js"));
+                        executor.executeScript(ResourceUtils.read("/scenario_chrome_1.js"));
 
                         try {
                             Thread.sleep(30000);
